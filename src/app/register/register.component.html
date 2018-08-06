@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">        
+        <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Abel|Open+Sans:400,600" rel="stylesheet" />
+        <script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        
+        <div class="container" id="nonNavbar">
+            <div class="panel panel-default col-md-4 col-md-offset-4">
+                <h1 align="center" class="margin-base-vertical">Sign Up</h1>
+                
+                <!--form starts-->
+                <form #registerForm = "ngForm" novalidate class="margin-base-vertical" (ngSubmit)= "createUser(registerForm)" >
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="icon-user"></span></span>
+                        <input required  type="text" class="form-control input-lg" name="Uname" placeholder="user name"
+                         #Uname = "ngModel" [(ngModel)] = "userName">
+                         <div class="alert alert-danger" *ngIf= "Uname.touched && !Uname.valid">
+                            <div *ngIf = "Uname.errors.required">User Name is required</div>
+                        </div>
+                    </div><br>
+                    
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="icon-envelope"></span></span>
+                        <input type="email"  required class="form-control input-lg" name="email" placeholder="email"
+                         #email = "ngModel" [(ngModel)] = "userEmail">
+                         <div class="alert alert-danger" *ngIf= "email.touched && !email.valid">
+                            <div *ngIf = "email.errors.required">email is required</div>
+                        </div>
+                    </div><br>
+
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="icon-key"></span></span>
+                        <input type="password" required class="form-control input-lg" name="password" placeholder="password"
+                        #password = "ngModel"  [(ngModel)] = "userPassword">
+                        <div class="alert alert-danger" *ngIf= "password.touched && !password.valid">
+                            <div *ngIf = "password.errors.required">password is required</div>
+                        </div>
+                    </div><br>
+
+                    <div class="text-center">
+                        <button type="submit" [disabled]= "!registerForm.valid" class="btn btn-success btn-lg">Register</button>
+                    </div>
+                </form>
+                <div class="margin-base-vertical">
+                    <h5 align="center"> Already registered? <a href="/login">Login</a></h5>
+                </div>
+                <div align="center">
+                    <a href="/">Go to Home page</a>
+                </div>
+                <!--form ends-->
+            </div>
+        </div>
+    </body>
+</html>
